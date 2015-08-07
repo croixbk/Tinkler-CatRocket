@@ -1,0 +1,50 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class EnemyGoAhead : Enemy 
+{
+	[HideInInspector]
+	public bool getCaught = false;
+	public GameObject target = null;
+
+	bool removeParentOnce = false;
+
+	public override void Start()
+	{
+		base.Start ();
+	}
+
+	void Update () 
+	{
+		BehaviourGoAhead ();
+	}
+
+	void BehaviourGoAhead() 
+	{
+		if (getCaught)
+		{
+			if (target != null)
+			{
+				if (!removeParentOnce)
+				{
+					transform.parent = null;
+					removeParentOnce = true;
+				}
+				
+				transform.LookAt(target.transform.position);
+				transform.right = new Vector3(transform.position.x + 0.2F, 2, transform.position.z) * velocity * Time.deltaTime;
+				transform.forward = new Vector3(transform.position.x, 2, transform.position.z + 0.5F) * velocity * Time.deltaTime;
+				
+				float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
+				
+				if (distanceToTarget >= 0.3F) 
+				{
+					EnemyBlackHole eBH = target.GetComponent<EnemyBlackHole>();
+					eBH._rigidbody.mass += _rigidbody.mass;
+					Destroy(gameObject);
+				}
+					
+			}
+		}
+	}
+}
