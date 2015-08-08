@@ -1,19 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BackgroundControl : MonoBehaviour {
-
+public class BackgroundControl : MonoBehaviour 
+{
 	[Space(10)]
+
 	public GameObject upperSpawn;
-	public GameObject bottomSpawn;
 	public GameObject currentBackground;
-	GameObject lastBackground;
+
+	float rangeToSpawnAndDestroy = 9F;
+
+	GameObject lastBackground, lastUpperSpawn;
 
 	bool canSpawnNextBackground = false;
-
 	int contBackground;
-
-	public float rangeToSpawnAndDestroy = 5F;
 
 	void Awake () 
 	{
@@ -33,14 +33,11 @@ public class BackgroundControl : MonoBehaviour {
 
 	void SpawnNext()
 	{
-		if (canSpawnNextBackground)
+		if (canSpawnNextBackground && currentBackground != null)
 		{
-			if (currentBackground != null)
+			if (transform.position.z - rangeToSpawnAndDestroy <= currentBackground.transform.position.z)
 			{
-				if (transform.position.x + rangeToSpawnAndDestroy <= currentBackground.transform.position.x)
-				{
-					SpawnConf();
-				}
+				SpawnConf();
 			}
 		}
 	}
@@ -48,22 +45,22 @@ public class BackgroundControl : MonoBehaviour {
 	void SpawnConf()
 	{
 		canSpawnNextBackground = false;
-		
-		//upperSpawn.transform.parent = null;
-		
-		Vector3 positionToSpawn = new Vector3(upperSpawn.transform.position.x, upperSpawn.transform.position.y, upperSpawn.transform.position.z * 2);
+
+		float distanceToAdd = Vector3.Distance(currentBackground.transform.position, upperSpawn.transform.position);
+
+		Vector3 positionToSpawn = new Vector3(upperSpawn.transform.position.x, upperSpawn.transform.position.y, upperSpawn.transform.position.z + distanceToAdd);
 		
 		GameObject go = Instantiate(currentBackground, positionToSpawn, currentBackground.transform.rotation) as GameObject;
-		go.name = "Background" + contBackground;
+		go.name = "Background " + contBackground;
 		contBackground ++;
-		
-		BackgroundInformations backInfo = go.GetComponent<BackgroundInformations>();
-		
+
 		lastBackground = currentBackground;
 		currentBackground = go;
-		
+
+		BackgroundInformations backInfo = currentBackground.GetComponent<BackgroundInformations>();
+
+		lastUpperSpawn = upperSpawn;
 		upperSpawn = backInfo.upperSpawn;
-		bottomSpawn = backInfo.bottomSpawn;
 		
 		RendererAnimation rendAnimLast = lastBackground.GetComponent<RendererAnimation>();
 		RendererAnimation rendAnimCurrent = currentBackground.GetComponent<RendererAnimation>();
@@ -73,12 +70,13 @@ public class BackgroundControl : MonoBehaviour {
 	
 	void DestroyNext()
 	{
-		if (lastBackground != null)
+		if (lastBackground != null && !canSpawnNextBackground)
 		{
-			if (transform.position.x - rangeToSpawnAndDestroy >= lastBackground.transform.position.x)
+			if (transform.position.z >= lastUpperSpawn.transform.position.z + rangeToSpawnAndDestroy)
 			{
 				canSpawnNextBackground = true;
-				Destroy(lastBackground);
+				GameObject go = lastBackground;
+				Destroy(go);
 			}
 		}
 	}

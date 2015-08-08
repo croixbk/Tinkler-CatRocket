@@ -31,13 +31,13 @@ public class Player : MonoBehaviour
 
 	void MouseMovement ()
 	{
-
 		if (Input.GetMouseButton(0)) 
 		{
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
 
-			if(Physics.Raycast(ray, out hit)){
+			if(Physics.Raycast(ray, out hit))
+			{
 				Vector3 movementDir = hit.point - transform.position;
 				movementDir.y = 2;
 				_rigidbody.velocity = movementDir * velocity * Time.fixedDeltaTime;
@@ -58,14 +58,16 @@ public class Player : MonoBehaviour
 			{
 				Touch touch = Input.GetTouch(0);
 
+				Vector3 movementDirection;
+
 				if (touch.phase == TouchPhase.Began)
 				{
-					Vector3 movementDir = new Vector3 (hit.point.x - transform.position.x, 2, hit.point.z - transform.position.z).normalized;
-					_rigidbody.velocity += movementDir * velocity * Time.fixedDeltaTime;
+					movementDirection = new Vector3 (hit.point.x - transform.position.x, 2, hit.point.z - transform.position.z).normalized;
+					_rigidbody.velocity += movementDirection * velocity * Time.fixedDeltaTime;
 				}
 				else if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
 				{
-					Vector3 movementDirection = new Vector3 (hit.point.x - transform.position.x, 2, hit.point.z - transform.position.z).normalized;
+					movementDirection = new Vector3 (hit.point.x - transform.position.x, 2, hit.point.z - transform.position.z).normalized;
 					_rigidbody.velocity = movementDirection * velocity * Time.fixedDeltaTime;
 				}
 				else if (touch.phase == TouchPhase.Ended)

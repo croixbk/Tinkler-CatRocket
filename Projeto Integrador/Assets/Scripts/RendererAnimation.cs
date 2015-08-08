@@ -5,7 +5,6 @@ public enum ComponentType {	Background,	Trail, Personagem }
 
 public class RendererAnimation: MonoBehaviour 
 {
-
 	public ComponentType component;
 
 	Vector2 uvAnimationRate = new Vector2(0.1F, 0);

@@ -5,5 +5,4 @@ public class BackgroundInformations : MonoBehaviour
 {
 	[Space(10)]
 	public GameObject upperSpawn;
-	public GameObject bottomSpawn;
 }

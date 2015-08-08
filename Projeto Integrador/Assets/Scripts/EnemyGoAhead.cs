@@ -9,6 +9,8 @@ public class EnemyGoAhead : Enemy
 
 	bool removeParentOnce = false;
 
+	float speed = 5F;
+
 	public override void Start()
 	{
 		base.Start ();
@@ -31,7 +33,11 @@ public class EnemyGoAhead : Enemy
 					removeParentOnce = true;
 				}
 				
-				transform.LookAt(target.transform.position);
+				//transform.LookAt(target.transform.position);
+				// Not tested
+				var targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
+				transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime);
+
 				transform.right = new Vector3(transform.position.x + 0.2F, 2, transform.position.z) * velocity * Time.deltaTime;
 				transform.forward = new Vector3(transform.position.x, 2, transform.position.z + 0.5F) * velocity * Time.deltaTime;
 				
