@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
 	public bool alive = true;
 	public int score;
 	Rigidbody _rigidbody;
+	public Vector3 movedirTeste;
+
 
 	void Start ()
 	{
@@ -30,25 +32,21 @@ public class Player : MonoBehaviour
 
 	void MouseMovement ()
 	{
-		if (Input.GetMouseButtonDown (0)) 
-		{
-			Vector3 pos = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
-			pos = Camera.main.ScreenToWorldPoint (pos);
 
-			pos = new Vector3 (pos.x - transform.position.x, 2, pos.z - transform.position.z).normalized;
-			_rigidbody.velocity += pos * Time.fixedDeltaTime * velocity;
-		} 
-		else if (Input.GetMouseButton (0)) 
+		if (Input.GetMouseButton(0)) 
 		{
-			Vector3 pos = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
-			pos = Camera.main.ScreenToWorldPoint (pos);
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			RaycastHit hit;
 
-			pos = new Vector3 (pos.x - transform.position.x, 2, pos.z - transform.position.z).normalized;
-			_rigidbody.velocity = pos * Time.fixedDeltaTime * velocity;
+			if(Physics.Raycast(ray, out hit)){
+				Vector3 movementDir = hit.point - transform.position;
+				movementDir.y = 2;
+				movedirTeste = movementDir;
+				_rigidbody.velocity = movementDir * velocity * Time.fixedDeltaTime;
+			}
 		} 
 		else
 			_rigidbody.velocity = Vector3.zero;			
-
 	}
 
 	void TouchMovement ()
