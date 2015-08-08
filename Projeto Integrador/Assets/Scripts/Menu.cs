@@ -23,7 +23,7 @@ public class Menu : MonoBehaviour
 
 	public void StartGame()
 	{
-		StartCoroutine("Play");
+		StartCoroutine("SecondaryPlay");
 	}
 
 	public void GameOverSadFace()
@@ -66,5 +66,13 @@ public class Menu : MonoBehaviour
 		canvas.SetActive (false);
 		//gameOverPanel.SetActive (false);
 		control.canSpawn = true;
+	}
+
+	IEnumerator SecondaryPlay(){
+
+		yield return new WaitForSeconds (timeToDisappearMenu);
+
+		GameObject.Find("Controller").SendMessage("StartGame");
+		mainPanel.SetActive (false);
 	}
 }

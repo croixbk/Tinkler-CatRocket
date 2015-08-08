@@ -32,7 +32,7 @@ public class ControlGenerator : MonoBehaviour
 
 	void Update ()
 	{
-		if (canSpawn) 
+		/*if (canSpawn) 
 		{
 			if (currentSpawn != null)
 			{
@@ -46,6 +46,11 @@ public class ControlGenerator : MonoBehaviour
 				// Making the game harder, bitch
 				// velocityOfBlocks += 0.1F;
 			}
-		}
+		}*/
+	}
+
+	public void SpawnEnemy(GameObject[] enemy){
+		Instantiate (enemy [0], spawnPoint.transform.position, Quaternion.identity);
+
 	}
 }

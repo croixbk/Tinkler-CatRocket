@@ -18,8 +18,8 @@ TagManager:
   - Environment
   - Walls
   - Player
-  - 
-  - 
+  - Enemy
+  - BottomEnd
   - 
   - 
   - 

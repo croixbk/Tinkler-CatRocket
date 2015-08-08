@@ -6,20 +6,23 @@ public class Player : MonoBehaviour
 	public float velocity = 10F;
 
 	[HideInInspector]
-	public bool alive = true;
+	public bool canMove;
 	public int score;
 	Rigidbody _rigidbody;
 
 
+	void Awake(){
+		canMove = false;
+	}
+
 	void Start ()
 	{
-		alive = true;
 		_rigidbody = GetComponent<Rigidbody> ();
 	}
 
 	void FixedUpdate ()
 	{
-		if (alive) 
+		if (canMove) 
 		{
 			#if UNITY_EDITOR
 				MouseMovement ();
@@ -75,10 +78,10 @@ public class Player : MonoBehaviour
 			}
 		} 
 	}
-
+	/*
 	void OnCollisionEnter (Collision other)
 	{
 		if (other.collider.gameObject.tag == "Enemy") 
-			alive = false;
-	}
+			canMove = false;
+	}*/
 }
