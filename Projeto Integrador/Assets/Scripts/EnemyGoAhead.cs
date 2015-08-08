@@ -43,7 +43,6 @@ public class EnemyGoAhead : Enemy
 					eBH._rigidbody.mass += _rigidbody.mass;
 					Destroy(gameObject);
 				}
-					
 			}
 		}
 	}

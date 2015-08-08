@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
 	public bool alive = true;
 	public int score;
 	Rigidbody _rigidbody;
-	public Vector3 movedirTeste;
 
 
 	void Start ()
@@ -41,7 +40,6 @@ public class Player : MonoBehaviour
 			if(Physics.Raycast(ray, out hit)){
 				Vector3 movementDir = hit.point - transform.position;
 				movementDir.y = 2;
-				movedirTeste = movementDir;
 				_rigidbody.velocity = movementDir * velocity * Time.fixedDeltaTime;
 			}
 		} 

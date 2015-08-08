@@ -1,11 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum ComponentType {
-	Background,	
-	Trail, 
-	Personagem
-}
+public enum ComponentType {	Background,	Trail, Personagem }
 
 public class RendererAnimation: MonoBehaviour 
 {
@@ -13,9 +9,11 @@ public class RendererAnimation: MonoBehaviour
 	public ComponentType component;
 
 	Vector2 uvAnimationRate = new Vector2(0.1F, 0);
-	Vector2 uvOffset = Vector2.zero;
 
-	public Renderer rend;
+	[HideInInspector]
+	public Vector2 uvOffset = Vector2.zero;
+
+	Renderer rend;
 	TrailRenderer trailRend;
 	
 	void Awake() 
@@ -44,6 +42,7 @@ public class RendererAnimation: MonoBehaviour
 
 		if (component == ComponentType.Background) 
 			rend.material.SetTextureOffset("_MainTex", uvOffset);
+
 		else if(component == ComponentType.Trail) 
 			trailRend.material.SetTextureOffset("_MainText", uvOffset);
 	}

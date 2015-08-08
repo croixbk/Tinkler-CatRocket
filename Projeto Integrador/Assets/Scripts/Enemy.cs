@@ -13,6 +13,6 @@ public class Enemy : MonoBehaviour
 	public virtual void Start () 
 	{
 		_rigidbody = GetComponent<Rigidbody>();
-		control = GameObject.Find (".Control Generators").GetComponent<ControlGenerator>();
+		control = GameObject.Find ("Control Generator").GetComponent<ControlGenerator>();
 	}
 }

@@ -34,7 +34,7 @@ public class EnemyBlock : MonoBehaviour
 
 	void Update()
 	{
-		_rigidbody.velocity = new Vector3(transform.position.x, 2, -15 * control.velocityOfBlocks * Time.deltaTime);
+		_rigidbody.velocity = new Vector3(transform.position.x, 2, -10 * control.velocityOfBlocks * Time.deltaTime);
 
 		if (canSpawn)
 		{
