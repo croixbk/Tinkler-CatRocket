@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyBlackHole : Enemy 
 {
 	[HideInInspector]
-	public float mass;
+	public float mass; 
 	public float nextScale;
 	public float velocityToGrow = 1.0F;
 
@@ -13,9 +13,10 @@ public class EnemyBlackHole : Enemy
 		base.Start ();
 		mass = _rigidbody.mass;
 	}
-	
-	void Update () 
+
+	public override void Update () 
 	{
+		base.Update ();
 		BehaviourBlackHole ();
 	}
 
@@ -35,26 +36,13 @@ public class EnemyBlackHole : Enemy
 		}
 	}
 
-	void OnTriggerEnter(Collider other)
+	public override void OnCollisionEnter(Collision coll)
 	{
-		if (other.gameObject.tag == "Enemy")
-		{
-			Enemy type = other.gameObject.GetComponent<Enemy>();
-			EnemyType typeEnemy = type.enemyType;
-			
-			if (typeEnemy != EnemyType.BlackHole)
-			{
-				if (typeEnemy == EnemyType.GoAhead)
-				{
-					EnemyGoAhead eGo = other.GetComponent<EnemyGoAhead>();
-					eGo.getCaught = true;
-					eGo.target = gameObject;
-				}
-				else if (typeEnemy == EnemyType.WallKicker)
-				{
+		//base.OnCollisionEnter ();
+	}
 
-				}
-			}
-		}
+	void OnTriggerEnter(Collider other)
+	{ 
+
 	}
 }

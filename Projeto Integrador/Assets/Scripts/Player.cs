@@ -3,16 +3,19 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
-	public float velocity = 10F;
+	float velocity = 10F;
 
 	[HideInInspector]
-	public bool canMove;
+	public bool alive;
+
+	[HideInInspector]
 	public int score;
+
 	Rigidbody _rigidbody;
 
-
-	void Awake(){
-		canMove = false;
+	void Awake()
+	{
+		alive = true;
 	}
 
 	void Start ()
@@ -22,15 +25,17 @@ public class Player : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-		if (canMove) 
+		/*
+		if (alive) 
 		{
 			#if UNITY_EDITOR
 				MouseMovement ();
 			#else
 				TouchMovement();
 			#endif
-		}
-	}
+		} 
+		*/
+	} 
 
 	void MouseMovement ()
 	{
@@ -45,7 +50,7 @@ public class Player : MonoBehaviour
 				movementDir.y = 2;
 				_rigidbody.velocity = movementDir * velocity * Time.fixedDeltaTime;
 			}
-		} 
+		}  
 		else
 			_rigidbody.velocity = Vector3.zero;			
 	}
@@ -78,10 +83,10 @@ public class Player : MonoBehaviour
 			}
 		} 
 	}
-	/*
+
 	void OnCollisionEnter (Collision other)
 	{
 		if (other.collider.gameObject.tag == "Enemy") 
-			canMove = false;
-	}*/
+			alive = false;
+	}
 }

@@ -16,8 +16,9 @@ public class EnemyGoAhead : Enemy
 		base.Start ();
 	}
 
-	void Update () 
+	public override void Update () 
 	{
+		base.Update ();
 		BehaviourGoAhead ();
 	}
 
@@ -38,8 +39,8 @@ public class EnemyGoAhead : Enemy
 				var targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
 				transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime);
 
-				transform.right = new Vector3(transform.position.x + 0.2F, 2, transform.position.z) * velocity * Time.deltaTime;
-				transform.forward = new Vector3(transform.position.x, 2, transform.position.z + 0.5F) * velocity * Time.deltaTime;
+				transform.right = new Vector3(transform.position.x + 0.2F, 2, transform.position.z) * velocityEnemy * Time.deltaTime;
+				transform.forward = new Vector3(transform.position.x, 2, transform.position.z + 0.5F) * velocityEnemy * Time.deltaTime;
 				
 				float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
 				
@@ -51,5 +52,10 @@ public class EnemyGoAhead : Enemy
 				}
 			}
 		}
+	}
+
+	public override void OnCollisionEnter(Collision other)
+	{
+		//base.OnCollisionEnter ();
 	}
 }

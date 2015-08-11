@@ -3,6 +3,7 @@ using System.Collections;
 
 public class BackgroundControl : MonoBehaviour 
 {
+	/*
 	[Space(10)]
 
 	public GameObject upperSpawn;
@@ -79,5 +80,5 @@ public class BackgroundControl : MonoBehaviour
 				Destroy(go);
 			}
 		}
-	}
+	}*/
 }

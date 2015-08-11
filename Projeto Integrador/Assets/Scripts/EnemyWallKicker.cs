@@ -20,8 +20,10 @@ public class EnemyWallKicker : Enemy
 		positionToGo = Vector3.zero;
 	}
 
-	void Update ()
+	public override void Update ()
 	{
+		base.Update ();
+
 		if (changeDir) 
 		{
 			dir = (dir == 'r')? 'l' : 'r';
@@ -38,11 +40,13 @@ public class EnemyWallKicker : Enemy
 
 	void BehaviourWallKicker()
 	{
-		_rigidbody.velocity = positionToGo * velocity * Time.fixedDeltaTime;
+		_rigidbody.velocity = positionToGo * velocityEnemy * Time.fixedDeltaTime;
 	}
 
-	void OnCollisionEnter (Collision other)
+	public override void OnCollisionEnter(Collision other)
 	{
+		//base.OnCollisionEnter ();
+
 		if (other.gameObject.tag == "Environment" || other.gameObject.tag == "Default") 
 			changeDir = true;
 	}

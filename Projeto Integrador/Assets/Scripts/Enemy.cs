@@ -1,41 +1,54 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum EnemyType { GoAhead, BlackHole, WallKicker,BlockController }
+
 public class Enemy : MonoBehaviour 
 {
-	public enum EnemyType { GoAhead, BlackHole, WallKicker,BlockController }
-
 	public EnemyType enemyType;
-	public float distanceToDie;
-	public float velocity = 3F;
+	public float velocityEnemy = 3F;
 	public GameController control;
 	public Rigidbody _rigidbody;
-	GameObject spawnPoint;
+
+	Player player; 
 
 	public virtual void Start () 
 	{
-		velocity = 10;
-		distanceToDie = 20;
 		_rigidbody = GetComponent<Rigidbody>();
-		spawnPoint = GameObject.Find("Spawn Point");
-		control = GameObject.Find ("Controller").GetComponent<GameController>();
+		control = GameObject.Find ("Spawns").GetComponent<GameController>();
+		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
+		Destroy (gameObject, 60F);
+	} 
+
+	public virtual void Update()
+	{
+		RaycastHit hit;
+		Vector3 pos = new Vector3 (transform.position.x, transform.position.y - 0.25F, transform.position.z);
+		
+		if (Physics.Raycast (pos, -transform.up, out hit)) 
+			transform.rotation = Quaternion.FromToRotation (Vector3.up, hit.normal);
 	}
 
-	void Update(){
-		if(enemyType == EnemyType.BlockController){
-			if (Vector3.Distance (transform.position, spawnPoint.transform.position) > distanceToDie) {
-				control.SpawnEnemyWave();
-				Destroy (this.gameObject);
-			}
+	// So pra nao encher o saco no inspector com referencia nao usada
+	IEnumerator asdasdasd()
+	{
+		yield return new WaitForSeconds (34232490);
+		Debug.Log (player.name);
+	}
+
+	public virtual void OnCollisionEnter(Collision other)
+	{
+		if (other.gameObject.tag == "Player")
+		{
+			Player player = other.gameObject.GetComponent<Player>();
+			player.alive = false;
+
+			/*
+				Colocar algum tipo de animaçao maneira ao inves de apenas destruir, 
+				mas claro, nao temos a animaçao maneira, mas pode ser uma "explosao" de particulas
+			*/
+
+			Destroy (gameObject, 0.3F);
 		}
-
-	}
-
-	void FixedUpdate(){
-		_rigidbody.velocity = new Vector3(0,0,-velocity*Time.deltaTime);
-	}
-
-	void OnCollisionEnter(){
-		Destroy (this.gameObject,0.3f);
 	}
 }
