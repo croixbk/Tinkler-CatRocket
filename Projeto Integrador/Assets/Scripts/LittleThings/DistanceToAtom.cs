@@ -5,18 +5,26 @@ public class DistanceToAtom : MonoBehaviour
 {
     public float distance;
     public static float atomDistance;
-    GameObject core;
+    public GameObject atom;
+	Vector3 movePosition;
 
-    void Awake()
+    void Start()
     {
-        core = GameObject.Find("Core");
+		movePosition = transform.position;
+		movePosition.y += distance; 
+        atom = GameObject.Find("Atom");
     
         if (distance > 0)
             atomDistance = distance;
 
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, core.transform.position, out hit, 14))
-            transform.up = hit.normal;
+		if (Physics.Raycast (transform.position, atom.transform.position - transform.position, out hit, atom.gameObject.layer)) {
+			transform.up = hit.normal;
+			print("aaa");
+			transform.position = hit.point;
+			print(transform.name +" "+hit.transform.name);
+			//transform.position = transform.up*distance; 
+		}
     }
 }

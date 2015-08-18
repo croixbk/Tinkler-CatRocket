@@ -21,7 +21,7 @@ public class ControlGenerator : MonoBehaviour
     [Header("Current level")]
     public Level level;
 
-    Player player;
+   // Player player;
 
     GameObject[] spawns;
 
@@ -79,7 +79,7 @@ public class ControlGenerator : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+//        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         spawns = GameObject.FindGameObjectsWithTag("Spawn");
     }
 

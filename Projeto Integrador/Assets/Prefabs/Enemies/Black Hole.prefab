@@ -372,7 +372,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a83813a2da2044088367faf2ed19ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 10
+  distance: 0
+  atom: {fileID: 0}
 --- !u!114 &11485826
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -385,7 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 0
-  velocityEnemy: 0
+  velocityEnemy: 40
   control: {fileID: 0}
   _rigidbody: {fileID: 0}
   anim: {fileID: 0}
@@ -422,7 +423,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: distance
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Name

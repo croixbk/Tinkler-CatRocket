@@ -29,8 +29,11 @@ public class RotationSphere : MonoBehaviour
 
     void Update()
     {
-		TouchMovement();
+#if UNITY_EDITOR
 		MouseMovement();
+#else
+		TouchMovement();
+#endif
     }
 
     void MovementEdgeCube(Ray ray)

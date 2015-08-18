@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
 
     bool diedOnce = false;
 
-    Animator _animator;
+    //Animator _animator;
     Camera mainCam;
 
     void Awake()
@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
 
         try
         {
-            _animator.GetComponent<Animator>();
+       //     _animator.GetComponent<Animator>();
         }
         catch { }
     }
@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
 
                 try
                 {
-                    _animator.SetBool("Dead", true);
+               //     _animator.SetBool("Dead", true);
                 }
                 catch { }
 
