@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
 public class FpsDisplay : MonoBehaviour
@@ -8,7 +7,8 @@ public class FpsDisplay : MonoBehaviour
 	string text;
 	Text textArea;
 
-	void Start(){
+	void Start()
+    {
 		textArea = GetComponent<Text> ();
 	}
 
