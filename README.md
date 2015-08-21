@@ -6,10 +6,10 @@
   
 ### História do jogo
 
-	Após ser demitido de seu emprego por trabalhar em seu projeto pessoal utilizando os equipamentos da empresa sem permissão, o cientista maluco abriu seu próprio laboratório na tentativa de continuar com seus experimentos.
+  Após ser demitido de seu emprego por trabalhar em seu projeto pessoal utilizando os equipamentos da empresa sem permissão, o cientista maluco abriu seu próprio laboratório na tentativa de continuar com seus experimentos.
 	
 ### Mecânica e gameplay
 
-	Consiste em manter o Tinker vivo pelo maior tempo possível para adquirir e melhorar habilidades.
-	O jogo é feito por blocos de inimigos pré-determinados, porém nem tão pré-determinados assim. Eles irão de encontro ao player na tentativa de ser um obstáculo ao seu progresso.
+  Consiste em manter o Tinker vivo pelo maior tempo possível para adquirir e melhorar habilidades.
+  O jogo é feito por blocos de inimigos pré-determinados, porém nem tão pré-determinados assim. Eles irão de encontro ao player na tentativa de ser um obstáculo ao seu progresso.
 
